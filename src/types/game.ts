@@ -25,3 +25,9 @@ export interface Game {
     category: Category | null;
     starRating: number | null;
 }
+
+/** Filters accepted by `filterGames`. Categories are OR-ed; publisher is AND-ed. */
+export interface GameFilters {
+    categoryIds?: number[];
+    publisherId?: number;
+}
