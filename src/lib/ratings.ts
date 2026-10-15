@@ -30,3 +30,12 @@ export function formatStarRating(rating: number | null): string {
 
     return '★'.repeat(fullStars) + (halfStar ? '½' : '') + '☆'.repeat(emptyStars);
 }
+
+/**
+ * Formats a rating as a "x.x / 5" label for compact displays (e.g. game cards).
+ * Returns `'No rating yet'` when the rating is `null`.
+ */
+export function formatRatingLabel(rating: number | null): string {
+    if (rating === null) return 'No rating yet';
+    return `${clampRating(rating).toFixed(1)} / 5`;
+}
