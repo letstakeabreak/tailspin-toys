@@ -24,4 +24,14 @@ test.describe('Home Page', () => {
     // Check that the welcome message is present using more specific locator
     await expect(page.getByText('Find your next game! And maybe even back one! Explore our collection!')).toBeVisible();
   });
+
+  test('should display a rating on every game card', async ({ page }) => {
+    const ratings = page.getByTestId('game-card-rating');
+    await expect(ratings.first()).toBeVisible();
+    const texts = await ratings.allTextContents();
+    expect(texts.length).toBe(await page.getByTestId('game-card').count());
+    for (const text of texts) {
+      expect(text).toMatch(/\d\.\d \/ 5|No rating yet/);
+    }
+  });
 });
